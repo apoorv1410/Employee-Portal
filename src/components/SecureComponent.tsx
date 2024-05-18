@@ -9,8 +9,15 @@ const softwareItems = [
 ];
 
 const VulnerableSoftware: React.FC = () => {
-  const [filter, setFilter] = useState<string>('');
-  const [filteredSoftware, setFilteredSoftware] = useState(softwareItems);
+    const [os] = useState('Windows');
+    const [isInstalled, setIsInstalled] = useState(false);
+    const [filter, setFilter] = useState<string>('');
+    const [filteredSoftware, setFilteredSoftware] = useState(softwareItems);
+
+    const handleInstall = () => {
+        setIsInstalled(true)
+    };
+    const installStatus = isInstalled ? 'Installed on this device' : 'Missing on this device'
 
   useEffect(() => {
     setFilteredSoftware(
@@ -25,6 +32,33 @@ const VulnerableSoftware: React.FC = () => {
 
   return (
     <div>
+        <div className="mb-2">
+            <p className="mb-4">Detected OS: {os}</p>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleInstall}>
+            Install Monitoring Program
+            </button>
+      </div>
+      <div className="mb-2">
+        <p className='flex'>
+            Installation Status: {installStatus}
+            {isInstalled && <><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-6 h-6 text-green-500 ml-1"
+                    >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 13l4 4L19 7"
+                    />
+                    </svg>
+                </>
+            }
+        </p>
+      </div>
       <h2 className="text-xl font-bold mb-4">Vulnerable Software</h2>
       <div className="mb-4">
         <input
