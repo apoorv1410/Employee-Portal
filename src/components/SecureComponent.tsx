@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 const softwareItems = [
   { id: 1, name: 'MS Word', version: '16.0.12345', vulnerability: 'Vulnerable' },
   { id: 2, name: 'Adobe Acrobat', version: '21.007.20091', vulnerability: 'Safe' },
-  { id: 3, name: 'Google Chrome', version: '89.0.4389.114', vulnerability: 'Vunerable' },
-  // Add more software items as needed
+  { id: 3, name: 'Google Chrome', version: '89.0.4389.114', vulnerability: 'Vunerable' }
 ];
 
 const VulnerableSoftware: React.FC = () => {
@@ -14,12 +13,14 @@ const VulnerableSoftware: React.FC = () => {
     const [filter, setFilter] = useState<string>('');
     const [filteredSoftware, setFilteredSoftware] = useState(softwareItems);
 
+    // handle the installtion status
     const handleInstall = () => {
         setIsInstalled(true)
     };
     const installStatus = isInstalled ? 'Installed on this device' : 'Missing on this device'
 
   useEffect(() => {
+    // filter the vulnerabilities table content from input
     setFilteredSoftware(
       softwareItems.filter(
         item =>

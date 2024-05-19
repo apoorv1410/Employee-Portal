@@ -4,6 +4,7 @@ import Aware from './components/AwareComponent';
 import Secure from './components/SecureComponent';
 
 const App: React.FC = () => {
+  // handle the visible tab
   const [activeTab, setActiveTab] = useState('Learn');
 
   return (
